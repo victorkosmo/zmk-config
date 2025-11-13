@@ -1,7 +1,39 @@
 /*
- * Copyright (c) 2020 The ZMK Contributors
+ * =========================================================================
+ * || YOUR CRONE KEYBOARD GUIDE & CONFIGURATION                          ||
+ * =========================================================================
  *
- * SPDX-License-Identifier: MIT
+ * WELCOME! This file controls your entire keyboard layout. You can edit it
+ * directly. After you commit a change, a new firmware is automatically
+ * built in your repository's "Actions" tab.
+ *
+ * --- YOUR LAYERS ---
+ * Your keyboard has multiple layers. The base layer is for normal typing.
+ * You access the other layers by HOLDING down specific keys.
+ *
+ *  - LAYER 0 (Default): Standard QWERTY typing.
+ *  - LAYER 1 (Numbers/Nav): Activated by HOLDING the thumb key next to LEFT CMD.
+ *  - LAYER 2 (Symbols/Media): Activated by HOLDING the thumb key next to LEFT ALT.
+ *
+ * --- YOUR CUSTOMIZATIONS (What's New) ---
+ *
+ *  1. RIGHT CTRL ADDED:
+ *     The right thumb key that used to be Right Option has been changed
+ *     to RIGHT CONTROL (&kp RCTRL) for better ergonomics.
+ *
+ *  2. MARKDOWN BACKTICK (`):
+ *     The backtick key is on LAYER 2. Hold the Layer 2 key and press
+ *     the single quote (') key to type a backtick.
+ *
+ * --- QUICK KEYCODE REFERENCE ---
+ *
+ *  &kp       - "Key Press". Standard key (e.g., &kp A, &kp LCTRL).
+ *  &mo       - "Momentary Layer". Hold to activate a layer (e.g., &mo 1).
+ *  &trans    - "Transparent". Lets the key from the layer below show through.
+ *  &bt       - "Bluetooth". Controls connections (e.g., &bt BT_CLR).
+ *  &none     - "None". Makes a key do nothing.
+ *
+ * Happy typing!
  */
 
 #include <behaviors.dtsi>
@@ -13,51 +45,60 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // LAYER 0: Default QWERTY + Russian
+        /*
+         * LAYER 0: Default Typing Layer
+         * macOS handles the English/Russian character switching.
+         */
         default_layer {
             bindings = <
                 // Left Hand
                 &kp ESC      &kp Q        &kp W        &kp E        &kp R        &kp T
                 &kp TAB      &kp A        &kp S        &kp D        &kp F        &kp G
                 &kp LSHIFT   &kp Z        &kp X        &kp C        &kp V        &kp B
-                                     &kp LCMD     &mo 1        &kp RET
+                                         &kp LCMD     &mo 1        &kp RET
                 // Right Hand
-                                            &kp Y        &kp U        &kp I        &kp O        &kp P        &kp BSPC
-                                            &kp H        &kp J        &kp K        &kp L        &kp SEMI     &kp SQT
-                                            &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp UP
-                               &kp LALT     &mo 2        &kp RALT
+                                                &kp Y        &kp U        &kp I        &kp O        &kp P        &kp BSPC
+                                                &kp H        &kp J        &kp K        &kp L        &kp SEMI     &kp SQT
+                                                &kp N        &kp M        &kp COMMA    &kp DOT      &kp FSLH     &kp UP
+                                   &kp LALT     &mo 2        &kp RCTRL    // MODIFIED: This is now Right Control
             >;
         };
 
-        // LAYER 1: Numbers, F-Keys, Bluetooth
+        /*
+         * LAYER 1: Numbers, F-Keys, Bluetooth, Nav
+         * Accessed by holding the thumb key next to Left CMD.
+         */
         layer_1 {
             bindings = <
                 // Left Hand
                 &kp TAB      &kp N1       &kp N2       &kp N3       &kp N4       &kp N5
                 &bt BT_CLR   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
                 &kp LSHIFT   &kp F1       &kp F2       &kp F3       &kp F4       &kp F5
-                                     &kp LCMD     &trans       &kp CAPS
+                                         &kp LCMD     &trans       &kp CAPS
                 // Right Hand
-                                            &kp N6       &kp N7       &kp N8       &kp N9       &kp N0       &kp BSPC
-                                            &none        &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &trans
-                                            &none        &none        &none        &none        &none        &trans
-                               &trans       &trans       &trans
+                                                &kp N6       &kp N7       &kp N8       &kp N9       &kp N0       &kp BSPC
+                                                &none        &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &trans
+                                                &none        &none        &none        &none        &none        &trans
+                                   &trans       &trans       &trans
             >;
         };
 
-        // LAYER 2: Symbols and Media
+        /*
+         * LAYER 2: Symbols and Media Controls
+         * Accessed by holding the thumb key next to Left ALT/Option.
+         */
         layer_2 {
             bindings = <
                 // Left Hand
                 &kp ESC      &kp EXCL     &kp AT       &kp HASH     &kp DLLR     &kp PRCNT
                 &kp LALT     &kp C_PREV   &kp C_PP     &kp C_NEXT   &kp C_MUTE   &kp C_VOL_UP
                 &kp LSHIFT   &trans       &trans       &trans       &trans       &kp C_VOL_DN
-                                     &kp LCMD     &trans       &trans
+                                         &kp LCMD     &trans       &trans
                 // Right Hand
-                                            &kp CARET    &kp AMPS     &kp KP_MULTIPLY &kp LPAR &kp RPAR    &kp BSPC
-                                            &trans       &kp EQUAL    &kp LBKT        &kp RBKT &kp BSLH    &kp GRAVE
-                                            &trans       &trans       &trans          &trans   &trans    &kp TILDE
-                               &trans       &trans       &trans
+                                                &kp CARET    &kp AMPS     &kp KP_MULTIPLY &kp LPAR &kp RPAR       &kp BSPC
+                                                &trans       &kp EQUAL    &kp LBKT        &kp RBKT &kp BSLH       &kp GRAVE  // MARKDOWN ` is here
+                                                &trans       &trans       &trans          &trans   &trans         &kp TILDE
+                                   &trans       &trans       &trans
             >;
         };
     };

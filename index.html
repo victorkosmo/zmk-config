@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Crone Keyboard Map</title>
+    <style>
+        body {
+            background-color: #282c34;
+            color: #abb2bf;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1, h2 {
+            color: #61afef;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .layer-switcher {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .layer-switcher button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #61afef;
+            background-color: #21252b;
+            color: #abb2bf;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .layer-switcher button:hover {
+            background-color: #3a4049;
+        }
+        .layer-switcher button.active {
+            background-color: #61afef;
+            color: #21252b;
+            font-weight: bold;
+        }
+        .keyboard-layout {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 6px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #4b5263;
+            border-radius: 8px;
+            background-color: #3a4049;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 3px 0 #21252b;
+            position: relative;
+            top: 0;
+            transition: top 0.1s, box-shadow 0.1s;
+        }
+        td:active {
+            top: 2px;
+            box-shadow: 0 1px 0 #21252b;
+        }
+        .mod { background-color: #465579; color: #c8d2ef; }     /* For Cmd, Shift, Ctrl, Alt */
+        .layer-key { background-color: #986841; color: #f2e3d8; } /* For MO(1), MO(2) */
+        .special { background-color: #497d63; color: #d9f2e7; } /* For BT, Media */
+        .empty { background-color: #2c313a; color: #5c6370; box-shadow: none; border-style: dashed; } /* For &trans or &none */
+        .thumb { width: 80px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Crone Keyboard Visual Map</h1>
+        <div class="layer-switcher">
+            <button onclick="showLayer(0)" class="active">Layer 0: Default</button>
+            <button onclick="showLayer(1)">Layer 1: Numbers & Nav</button>
+            <button onclick="showLayer(2)">Layer 2: Symbols & Media</button>
+        </div>
+
+        <!-- LAYER 0: Default -->
+        <div id="layer-0" class="layer">
+            <h2>Layer 0: Default Typing</h2>
+            <div class="keyboard-layout">
+                <!-- Left Hand -->
+                <table>
+                    <tr> <td>ESC</td> <td>Q</td> <td>W</td> <td>E</td> <td>R</td> <td>T</td> </tr>
+                    <tr> <td>Tab</td> <td>A</td> <td>S</td> <td>D</td> <td>F</td> <td>G</td> </tr>
+                    <tr> <td class="mod">Shift</td> <td>Z</td> <td>X</td> <td>C</td> <td>V</td> <td>B</td> </tr>
+                    <tr> <td></td> <td></td> <td class="mod">Cmd</td> <td class="layer-key thumb">Hold<br>Layer 1</td> <td class="mod">Enter</td> <td></td> </tr>
+                </table>
+                <!-- Right Hand -->
+                <table>
+                    <tr> <td>Y</td> <td>U</td> <td>I</td> <td>O</td> <td>P</td> <td>Backspace</td> </tr>
+                    <tr> <td>H</td> <td>J</td> <td>K</td> <td>L</td> <td>;</td> <td>'</td> </tr>
+                    <tr> <td>N</td> <td>M</td> <td>,</td> <td>.</td> <td>/</td> <td>↑</td> </tr>
+                    <tr> <td></td> <td class="mod">Option</td> <td class="layer-key thumb">Hold<br>Layer 2</td> <td class="mod">Ctrl</td> <td></td> <td></td> </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- LAYER 1: Numbers -->
+        <div id="layer-1" class="layer" style="display: none;">
+            <h2>Layer 1: Numbers, F-Keys, Nav (Hold Left Thumb Key)</h2>
+            <div class="keyboard-layout">
+                <!-- Left Hand -->
+                <table>
+                    <tr> <td>Tab</td> <td>1</td> <td>2</td> <td>3</td> <td>4</td> <td>5</td> </tr>
+                    <tr> <td class="special">BT<br>CLEAR</td> <td class="special">BT 0</td> <td class="special">BT 1</td> <td class="special">BT 2</td> <td class="special">BT 3</td> <td class="special">BT 4</td> </tr>
+                    <tr> <td class="mod">Shift</td> <td class="special">F1</td> <td class="special">F2</td> <td class="special">F3</td> <td class="special">F4</td> <td class="special">F5</td> </tr>
+                    <tr> <td></td> <td></td> <td class="mod">Cmd</td> <td class="empty thumb">&trans;</td> <td class="mod">Caps<br>Lock</td> <td></td> </tr>
+                </table>
+                <!-- Right Hand -->
+                <table>
+                    <tr> <td>6</td> <td>7</td> <td>8</td> <td>9</td> <td>0</td> <td>Backspace</td> </tr>
+                    <tr> <td class="empty">&none;</td> <td class="special">←</td> <td class="special">↓</td> <td class="special">↑</td> <td class="special">→</td> <td class="empty">&trans;</td> </tr>
+                    <tr> <td class="empty">&none;</td> <td class="empty">&none;</td> <td class="empty">&none;</td> <td class="empty">&none;</td> <td class="empty">&none;</td> <td class="empty">&trans;</td> </tr>
+                    <tr> <td></td> <td class="empty">&trans;</td> <td class="empty thumb">&trans;</td> <td class="empty">&trans;</td> <td></td> <td></td> </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- LAYER 2: Symbols -->
+        <div id="layer-2" class="layer" style="display: none;">
+            <h2>Layer 2: Symbols & Media (Hold Right Thumb Key)</h2>
+            <div class="keyboard-layout">
+                <!-- Left Hand -->
+                <table>
+                    <tr> <td>ESC</td> <td>!</td> <td>@</td> <td>#</td> <td>$</td> <td>%</td> </tr>
+                    <tr> <td class="mod">Option</td> <td class="special">Prev</td> <td class="special">Play</td> <td class="special">Next</td> <td class="special">Mute</td> <td class="special">Vol +</td> </tr>
+                    <tr> <td class="mod">Shift</td> <td class="empty">&trans;</td> <td class="empty">&trans;</td> <td class="empty">&trans;</td> <td class="empty">&trans;</td> <td class="special">Vol -</td> </tr>
+                    <tr> <td></td> <td></td> <td class="mod">Cmd</td> <td class="empty thumb">&trans;</td> <td class="empty">&trans;</td> <td></td> </tr>
+                </table>
+                <!-- Right Hand -->
+                <table>
+                    <tr> <td>^</td> <td>&</td> <td>*</td> <td>(</td> <td>)</td> <td>Backspace</td> </tr>
+                    <tr> <td class="empty">&trans;</td> <td>=</td> <td>[</td> <td>]</td> <td>\</td> <td style="background-color:#d19a66; color:#282c34">`</td> </tr>
+                    <tr> <td class="empty">&trans;</td> <td class="empty">&trans;</td> <td class="empty">&trans;</td> <td class="empty">&trans;</td> <td class="empty">&trans;</td> <td>~</td> </tr>
+                    <tr> <td></td> <td class="empty">&trans;</td> <td class="empty thumb">&trans;</td> <td class="empty">&trans;</td> <td></td> <td></td> </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const layers = document.querySelectorAll('.layer');
+        const buttons = document.querySelectorAll('.layer-switcher button');
+
+        function showLayer(layerIndex) {
+            // Hide all layers
+            layers.forEach(layer => {
+                layer.style.display = 'none';
+            });
+            // Show the selected layer
+            document.getElementById('layer-' + layerIndex).style.display = 'block';
+
+            // Update active state for buttons
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            buttons[layerIndex].classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
